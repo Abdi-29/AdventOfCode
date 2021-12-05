@@ -3,7 +3,7 @@ with open("test.txt") as file:
 s = 57,9,8,30,40,62,24,70,54,73,12,3,71,95,58,88,23,81,53,80,22,45,98,37,18,72,14,20,66,0,19,31,82,34,55,29,27,96,48,28,87,83,36,26,63,21,5,46,33,86,32,56,6,38,52,16,41,74,99,77,13,35,65,4,78,91,90,43,1,2,64,60,94,85,61,84,42,76,68,10,49,89,11,17,79,69,39,50,25,51,47,93,44,92,59,75,7,97,67,15
 new_list = []
 new_list = s
-print(len(new_list))
+#print(len(new_list))
 
 
 content = content.split('\n')
@@ -230,7 +230,9 @@ for k in range (boards):
                 #print("j = " + str(j) + " " + str(j + k * 6))
             elif (content[j][i] == ' ' and last == 1):
                 new_content[j + k * 5][count] = num
-                #print("j = " + str(j) + " " + str(j + k * 6))
+                print("j = " + str(j) + " " + str(j + k * 6) + " " + str(num))
+                if j == 4:
+                    break
                 count += 1
                 last = 0
                 num = 0
@@ -282,9 +284,9 @@ i = 0
 y = 0
 x = 0
 done = 0
-while x < 100:
+while x < 26:
     i = 0
-    while i < 500:
+    while i < 15:
         y = 0
         while y < 5:
             if new_content[i][y] == new_list[x]:
@@ -297,7 +299,7 @@ while x < 100:
             done = 1
             break
         #hvertical bingo
-        if (bin0[0][i] != -1 and bin0[1][i] != -1 and bin0[2][i] != -1 and bin0[3][i] != -1 and bin0[4][i] != -1): #swap these x and y around
+        if (bin0[0][i] != -1 and bin0[1][i] != -1 and bin0[2][i] != -1 and bin0[3][i] != -1 and bin0[4][i] != -1): #swap these x and y
             print("BINGOOOOOOOOOOO ON LINE" + str(i + 1 + (i / 5)))
             done = 1
             break
@@ -310,13 +312,13 @@ while x < 100:
 # print(bin0)
 
 print("\ninput:")  
-for j in range (500):
+for j in range (100):
     for i in range (5):
         print(new_content[i + j * 5][0], new_content[i + j * 5][1], new_content[i + j * 5][2], new_content[i + j * 5][3], new_content[i + j * 5][4])
     print("next!")    
 
 print("\noutput:")  
-for j in range (500):
+for j in range (100):
     for i in range (5):
         print(bin0[i + j * 5][0], bin0[i + j * 5][1], bin0[i + j * 5][2], bin0[i + j * 5][3], bin0[i + j * 5][4])
     print("next!")    
