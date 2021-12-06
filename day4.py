@@ -1012,7 +1012,6 @@ bin0 =          [[-1, -1, -1, -1, -1],
 
 
 #FILL THE NEW-CONTENT
-boards = 100
 
 for k in range (boards):
     for j in range (5):
@@ -1082,36 +1081,45 @@ for k in range (boards):
 i = 0
 y = 0
 x = 0
+arr = []
 done = 0
+n = 0
 while x < 100:
     i = 0
     while i < 490:
         y = 0
+        for y in range(5):
         while y < 5:
             if new_content[i][y] == new_list[x]:
                 bin0[i][y] = new_list[x]
                 break
             y += 1
         #horizontal bingo
+        if y == 5:
+            y = 4
         if (bin0[i][0] != -1 and bin0[i][1] != -1 and bin0[i][2] != -1 and bin0[i][3] != -1 and bin0[i][4] != -1):
-            print("BINGOOOOOOOOOOO ON LINE" + str(i + 1 + (i / 5)))
-            print(bin0[i][y])
-            done = 1
-            break
+            if i + 1 + (i / 5) not in arr:
+                arr.append(i + 1 + (i / 5))
+            #     print("BINGOOOOOOOOOOO ON LINE" + str(i + 1 + (i / 5)))
+            # print(bin0[i][y])
+            done += 1
+            # break
         #hvertical bingo
         if y == 5:
             y = 4
         elif (bin0[i + 0][y] != -1 and bin0[i + 1][y] != -1 and bin0[i + 2][y] != -1 and bin0[i + 3][y] != -1 and bin0[i + 4][y] != -1): #swap these x and y
-            print("BINGOOOOOOOOOOO ON LINE" + str(i + 1 + (i / 5)))
-            print('verti')
-            print(bin0[0][i], bin0[1][i], bin0[2][i], bin0[3][i], bin0[4][i])
-            print(bin0[i][y - 1])
-            done = 1
-            break
+            if i + 1 + (i / 5) not in arr:
+                arr.append(i + 1 + (i / 5))
+            #     print("BINGOOOOOOOOOOO ON LINE" + str(i + 1 + (i / 5)))
+            # print('verti')
+            # print(bin0[i][y - 1])
+            done += 1
+            # break
         i += 1
     x += 1
-    if done == 1:
-        break
+    # if done == 3:
+    #     break
+print(len(arr))
 #     for bv in bin0:
 #         print(bv)
 # print(bin0)
@@ -1122,11 +1130,11 @@ while x < 100:
     #     print(new_content[i + j * 5][0], new_content[i + j * 5][1], new_content[i + j * 5][2], new_content[i + j * 5][3], new_content[i + j * 5][4])
     # print("next!")    
 
-print("\noutput:")  
-for j in range (100):
-    for i in range (5):
-        print(bin0[i + j * 5][0], bin0[i + j * 5][1], bin0[i + j * 5][2], bin0[i + j * 5][3], bin0[i + j * 5][4])
-    print("next!")    
+# print("\noutput:")  
+# for j in range (100):
+#     for i in range (5):
+#         print(bin0[i + j * 5][0], bin0[i + j * 5][1], bin0[i + j * 5][2], bin0[i + j * 5][3], bin0[i + j * 5][4])
+#     print("next!")    
 
 
 
