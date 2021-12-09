@@ -53,11 +53,6 @@ for i in range(0,len(arr_len)):
             if len(k) == arr_len[i]:
                 value += 1
 # part two
-""" arr_len = [acedgfb: 8, cdfbe: 5, gcdfa: 2, fbcad: 3,
-               dab: 7, cefabd: 9, cdfgeb: 6, cagedb: 0, ab: 1]"""
-# create an array of 8 and assegn them with them value
-# arr = {"cagedb": 0, "ab": 1, "gcdfa": 2 , "fbcad": 3, "eafb": 4,
-#         "cdfbe": 5, "cdfgeb": 6, "dab": 7, "acedgfb": 8, "cefabd": 9}
 boards = []
 f_boards = []
 for i in range(len(left_arr)):
@@ -67,10 +62,8 @@ for i in range(len(left_arr)):
             get_1_4.append(lines)
         elif len(lines) == 4:
             get_1_4.append(lines)
-    # boards.append(board)
     board = []
     for line in right_arr[i]:
-        # for line in lines:
         value = 0
         if len(line) == 5:
             value = get_the_value_5(line, get_1_4)
@@ -90,6 +83,3 @@ for i in range(len(left_arr)):
     boards = int("".join(str(n) for n in board))
     f_boards.append(boards)
 print(sum(f_boards))
-
-
-
