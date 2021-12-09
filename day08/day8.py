@@ -1,24 +1,40 @@
 def get_the_value_5(line, get_1_4):
-    if len(get_1_4) == 0:
+    if len(get_1_4[0]) == 2:
+        if all(ch in get_1_4[1] for ch in get_1_4[0]):
+            tmp = []
+            for ch in get_1_4[1]:
+                if ch != get_1_4[0][0] and ch != get_1_4[0][1]:
+                    tmp.append(ch)
+            if tmp[0] in line and tmp[1] in line:
+                return (5)
+        if all(ch1 in line for ch1 in get_1_4[0]):
+            return 3
         return 2
-    elif len(get_1_4) == 1:
-        return 5
-    elif len(get_1_4) == 2:
-        return 3
+    else:
+        if all(ch in get_1_4[0] for ch in get_1_4[1]):
+            tmp = []
+            for ch in get_1_4[0]:
+                if ch != get_1_4[1][0] and ch != get_1_4[1][1]:
+                    tmp.append(ch)
+            if tmp[0] in line and tmp[1] in line:
+                return (5)
+        if all(ch in line for ch in get_1_4[1]):
+            return 3
+        return 2
 
 def get_the_value_6(line, get_1_4):
     if len(get_1_4[0]) == 2:
-        if (get_1_4[0] not in get_1_4[1]):
-            return 6
-        elif get_1_4[0] in get_1_4[1]:
+        if all(ch in get_1_4[1] for ch in get_1_4[0]) and all(ch1 in line for ch1 in get_1_4[1]):
             return 9
-        return 0
+        elif all(ch in line for ch in get_1_4[0]):
+            return 0
+        return 6
     else:
-        if get_1_4[1] not in get_1_4[0]:
-            return 6
-        elif get_1_4[1][0] in get_1_4[0]:
+        if all(ch in get_1_4[0] for ch in get_1_4[1]) and all(ch1 in line for ch1 in get_1_4[0]):
             return 9
-        return 0
+        elif all(ch in line for ch in get_1_4[1]):
+            return 0
+        return 6
 # read the file
 left_arr = []
 right_arr = []
@@ -26,7 +42,7 @@ value = 0
 for line in open("day8.txt").readlines():
     left, right = line[:-1].split('| ')
     left_list = left[:-1].split(" ")
-    right_list = right[:-1].split(" ")
+    right_list = right[:].split(" ")
     left_arr.append(left_list)
     right_arr.append(right_list)
 # part one
@@ -43,6 +59,7 @@ for i in range(0,len(arr_len)):
 # arr = {"cagedb": 0, "ab": 1, "gcdfa": 2 , "fbcad": 3, "eafb": 4,
 #         "cdfbe": 5, "cdfgeb": 6, "dab": 7, "acedgfb": 8, "cefabd": 9}
 boards = []
+f_boards = []
 for i in range(len(left_arr)):
     get_1_4 = []
     for lines in left_arr[i]:
@@ -70,8 +87,9 @@ for i in range(len(left_arr)):
         else:
             continue
         board.append(value)
-    boards.append(board)
-print(boards)
+    boards = int("".join(str(n) for n in board))
+    f_boards.append(boards)
+print(sum(f_boards))
 
 
 
